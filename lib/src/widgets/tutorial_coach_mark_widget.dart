@@ -225,6 +225,11 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
       return const SizedBox.shrink();
     }
 
+    Color? inkColor;
+    if (widget.skipWidget != null) {
+      inkColor = Colors.transparent;
+    }
+
     return Align(
       alignment: currentTarget?.alignSkip ?? widget.alignSkip,
       child: SafeArea(
@@ -232,6 +237,10 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
           opacity: showContent ? 1 : 0,
           duration: const Duration(milliseconds: 300),
           child: InkWell(
+            hoverColor: inkColor,
+            focusColor: inkColor,
+            splashColor: inkColor,
+            highlightColor: inkColor,
             onTap: skip,
             child: Padding(
               padding: const EdgeInsets.all(20),
