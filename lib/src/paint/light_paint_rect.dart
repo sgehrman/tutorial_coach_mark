@@ -172,6 +172,7 @@ class LightPaintRect extends CustomPainter {
         ..color = colorShadow.withOpacity(opacityShadow)
         ..strokeWidth = 4,
     );
+
     if (borderSide != null && borderSide?.style != BorderStyle.none) {
       canvas.drawPath(
         radius > 0
