@@ -197,11 +197,9 @@ class AnimatedStaticFocusLightState extends AnimatedFocusLightState {
 
           return Stack(
             children: <Widget>[
-              Positioned(
-                top: -2,
-                left: -2,
-                bottom: -2,
-                right: -2,
+              SizedBox(
+                width: double.maxFinite,
+                height: double.maxFinite,
                 child: CustomPaint(
                   painter: _getPainter(_targetFocus),
                 ),
@@ -362,11 +360,9 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
 
               return Stack(
                 children: <Widget>[
-                  Positioned(
-                    top: -2,
-                    left: -2,
-                    bottom: -2,
-                    right: -2,
+                  SizedBox(
+                    width: double.maxFinite,
+                    height: double.maxFinite,
                     child: CustomPaint(
                       painter: _getPainter(_targetFocus),
                     ),
