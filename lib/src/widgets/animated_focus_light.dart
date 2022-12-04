@@ -210,6 +210,7 @@ class AnimatedStaticFocusLightState extends AnimatedFocusLightState {
                 top: (_targetPosition?.offset.dy ?? 0) - _getPaddingFocus() * 2,
                 child: InkWell(
                   splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   borderRadius: _betBorderRadiusTarget(),
                   onTapDown: (details) {
@@ -376,6 +377,7 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
                         _getPaddingFocus() * 2,
                     child: InkWell(
                       splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       borderRadius: _betBorderRadiusTarget(),
                       onTap: _targetFocus.enableTargetTab
