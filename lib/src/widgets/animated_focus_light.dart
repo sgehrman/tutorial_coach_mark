@@ -381,6 +381,23 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
 
               return Stack(
                 children: <Widget>[
+                  // on flutter web there is a one pixel border that peeks though
+                  Positioned(
+                    top: -1,
+                    right: -1,
+                    left: -1,
+                    bottom: -1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.fromBorderSide(
+                          BorderSide(
+                            width: 2,
+                            color: _targetFocus.color ?? widget.colorShadow,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     width: double.maxFinite,
                     height: double.maxFinite,
