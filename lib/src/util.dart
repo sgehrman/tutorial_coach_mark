@@ -2,30 +2,40 @@ import 'package:flutter/widgets.dart';
 import 'package:tutorial_coach_mark/src/target/target_focus.dart';
 import 'package:tutorial_coach_mark/src/target/target_position.dart';
 
-enum ShapeLightFocus { Circle, RRect }
+enum ShapeLightFocus { circle, rRect }
 
 TargetPosition? getTargetCurrent(TargetFocus target) {
   if (target.keyTarget != null) {
-    var key = target.keyTarget!;
+    final key = target.keyTarget!;
 
     try {
-      final RenderBox renderBoxRed =
-          key.currentContext!.findRenderObject() as RenderBox;
-      final size = renderBoxRed.size;
-      final state =
-          key.currentContext!.findAncestorStateOfType<NavigatorState>();
-      Offset offset;
-      if (state != null) {
-        offset = renderBoxRed.localToGlobal(Offset.zero,
-            ancestor: state.context.findRenderObject());
-      } else {
-        offset = renderBoxRed.localToGlobal(Offset.zero);
+      Offset offset = Offset.zero;
+      Size size = Size.zero;
+
+      final RenderBox? renderBoxRed =
+          key.currentContext!.findRenderObject() as RenderBox?;
+
+      if (renderBoxRed != null) {
+        size = renderBoxRed.size;
+
+        final state =
+            key.currentContext!.findAncestorStateOfType<NavigatorState>();
+        if (state != null) {
+          offset = renderBoxRed.localToGlobal(
+            Offset.zero,
+            ancestor: state.context.findRenderObject(),
+          );
+        } else {
+          offset = renderBoxRed.localToGlobal(Offset.zero);
+        }
       }
 
       return TargetPosition(size, offset);
     } catch (e) {
       print(
-          "TutorialCoachMark (ERROR): It was not possible to obtain target position.");
+        'TutorialCoachMark (ERROR): It was not possible to obtain target position.',
+      );
+
       return null;
     }
   } else {

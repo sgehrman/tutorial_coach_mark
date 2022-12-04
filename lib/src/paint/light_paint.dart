@@ -17,14 +17,16 @@ class LightPaint extends CustomPainter {
     this.colorShadow = Colors.black,
     this.opacityShadow = 0.8,
     this.borderSide,
-  }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
+  }) : assert(opacityShadow >= 0 && opacityShadow <= 1, 'opacity bad');
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (positioned == Offset.zero) return;
-    var maxSize = max(size.width, size.height);
+    if (positioned == Offset.zero) {
+      return;
+    }
+    final maxSize = max(size.width, size.height);
 
-    double radius = maxSize * (1 - progress) + sizeCircle;
+    final double radius = maxSize * (1 - progress) + sizeCircle;
 
     // There is some weirdness here.  On mobile, using arcTo with `sweepAngle: 2 * pi`
     // gives the equivalent of `sweepAngle: 0`.  I couldn't find any documentation
@@ -75,11 +77,12 @@ class LightPaint extends CustomPainter {
     );
     if (borderSide != null && borderSide?.style != BorderStyle.none) {
       canvas.drawPath(
-          justCircleHole,
-          Paint()
-            ..style = PaintingStyle.stroke
-            ..color = borderSide!.color
-            ..strokeWidth = borderSide!.width);
+        justCircleHole,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..color = borderSide!.color
+          ..strokeWidth = borderSide!.width,
+      );
     }
   }
 

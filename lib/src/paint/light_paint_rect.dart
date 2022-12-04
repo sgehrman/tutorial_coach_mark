@@ -20,7 +20,7 @@ class LightPaintRect extends CustomPainter {
     this.offset = 10,
     this.radius = 10,
     this.borderSide,
-  }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
+  }) : assert(opacityShadow >= 0 && opacityShadow <= 1, 'opacity bad');
 
   static Path _drawRectHole(
     Size canvasSize,
@@ -51,7 +51,7 @@ class LightPaintRect extends CustomPainter {
     double h,
     double radius,
   ) {
-    double diameter = radius * 2;
+    final double diameter = radius * 2;
 
     return Path()
       ..moveTo(0, 0)
@@ -111,7 +111,7 @@ class LightPaintRect extends CustomPainter {
     double h,
     double radius,
   ) {
-    double diameter = radius * 2;
+    final double diameter = radius * 2;
 
     return Path()
       ..moveTo(x, y + radius)
@@ -145,19 +145,23 @@ class LightPaintRect extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (target.offset == Offset.zero) return;
+    if (target.offset == Offset.zero) {
+      return;
+    }
 
-    var maxSize = max(size.width, size.height) +
+    final maxSize = max(size.width, size.height) +
         max(target.size.width, target.size.height) +
         target.getBiggerSpaceBorder(size);
 
-    double x = -maxSize / 2 * (1 - progress) + target.offset.dx - offset / 2;
+    final double x =
+        -maxSize / 2 * (1 - progress) + target.offset.dx - offset / 2;
 
-    double y = -maxSize / 2 * (1 - progress) + target.offset.dy - offset / 2;
+    final double y =
+        -maxSize / 2 * (1 - progress) + target.offset.dy - offset / 2;
 
-    double w = maxSize * (1 - progress) + target.size.width + offset;
+    final double w = maxSize * (1 - progress) + target.size.width + offset;
 
-    double h = maxSize * (1 - progress) + target.size.height + offset;
+    final double h = maxSize * (1 - progress) + target.size.height + offset;
 
     canvas.drawPath(
       radius > 0

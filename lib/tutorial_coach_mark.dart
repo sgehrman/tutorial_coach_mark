@@ -45,7 +45,7 @@ class TutorialCoachMark {
     this.paddingFocus = 10,
     this.onSkip,
     this.alignSkip = Alignment.bottomRight,
-    this.textSkip = "SKIP",
+    this.textSkip = 'SKIP',
     this.textStyleSkip = const TextStyle(color: Colors.white),
     this.hideSkip = false,
     this.opacityShadow = 0.8,
@@ -54,7 +54,7 @@ class TutorialCoachMark {
     this.pulseAnimationDuration = const Duration(milliseconds: 500),
     this.pulseEnable = true,
     this.skipWidget,
-  }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
+  }) : assert(opacityShadow >= 0 && opacityShadow <= 1, 'shadow bad');
 
   OverlayEntry _buildOverlay() {
     return OverlayEntry(

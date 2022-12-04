@@ -13,10 +13,11 @@ class TargetPosition {
       );
 
   double getBiggerSpaceBorder(Size size) {
-    double maxDistanceX =
+    final double maxDistanceX =
         center.dx > size.width / 2 ? center.dx : size.width - center.dx;
-    double maxDistanceY =
+    final double maxDistanceY =
         center.dy > size.height / 2 ? center.dy : size.height - center.dy;
+
     return max(maxDistanceX, maxDistanceY);
   }
 }

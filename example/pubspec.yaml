@@ -22,19 +22,18 @@ dependencies:
     sdk: flutter
 
   tutorial_coach_mark:
-    path: ".."
+    path: '..'
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
+  dart_code_metrics: ^5.0.0
+  dfc_lints:
+    git: https://github.com/sgehrman/dfc_lints
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

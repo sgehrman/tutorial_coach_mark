@@ -5,16 +5,17 @@
 
 Create a beautiful and easy tutorial for your application.
 
-Example 1             |  Example 2
-:-------------------------:|:-------------------------:
-![](https://github.com/RafaelBarbosatec/tutorial_coach_mark/blob/master/img/exampleTutorialCoachMark.gif)  |  ![](https://github.com/RafaelBarbosatec/tutorial_coach_mark/blob/master/img/example_boleiro.gif)
+|                                                 Example 1                                                 |                                            Example 2                                             |
+| :-------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| ![](https://github.com/RafaelBarbosatec/tutorial_coach_mark/blob/master/img/exampleTutorialCoachMark.gif) | ![](https://github.com/RafaelBarbosatec/tutorial_coach_mark/blob/master/img/example_boleiro.gif) |
 
 # Usage
+
 To use this plugin, add `tutorial_coach_mark` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
 ### Example
 
-``` dart
+```dart
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -57,22 +58,22 @@ TargetFocus is the class that represents the widget that will be focused and con
 
 Attributes:
 
-| Attribute | Type | Description |
-| --- | --- | --- |
-| `identify` | dynamic | free for identification use |
-| `keyTarget` | GlobalKey | GlobalKey widget that wants to be focused |
-| `targetPosition` | TargetPosition | If you do not want to use GlobalKey, you can create a TargetPosition to determine where to focus |
-| `contents` | ContentTarget[] | Content list you want to display after focusing widget |
-| `shape` | ShapeLightFocus | ShapeLightFocus.Circle or ShapeLightFocus.RRect |
-| `radius` | double | Use when shape = ShapeLightFocus.RRect |
-| `color` | Color | Custom color to target |
-| `enableOverlayTab` | bool | enable click in all screen to call next step |
-| `enableTargetTab` | bool | enable click in target to call next step |
-| `alignSkip` | Alignment | use to align the skip in the target |
-| `paddingFocus` | Alignment | settings padding of the focus in target |
-| `focusAnimationDuration` | Duration | override the widget's global focus animation duration |
-| `unFocusAnimationDuration` | Duration | override the widget's global unfocus animation duration |
-| `pulseVariation` | Tween | override interval pulse animation |
+| Attribute                  | Type            | Description                                                                                      |
+| -------------------------- | --------------- | ------------------------------------------------------------------------------------------------ |
+| `identify`                 | dynamic         | free for identification use                                                                      |
+| `keyTarget`                | GlobalKey       | GlobalKey widget that wants to be focused                                                        |
+| `targetPosition`           | TargetPosition  | If you do not want to use GlobalKey, you can create a TargetPosition to determine where to focus |
+| `contents`                 | ContentTarget[] | Content list you want to display after focusing widget                                           |
+| `shape`                    | ShapeLightFocus | ShapeLightFocus.circle or ShapeLightFocus.rRect                                                  |
+| `radius`                   | double          | Use when shape = ShapeLightFocus.rRect                                                           |
+| `color`                    | Color           | Custom color to target                                                                           |
+| `enableOverlayTab`         | bool            | enable click in all screen to call next step                                                     |
+| `enableTargetTab`          | bool            | enable click in target to call next step                                                         |
+| `alignSkip`                | Alignment       | use to align the skip in the target                                                              |
+| `paddingFocus`             | Alignment       | settings padding of the focus in target                                                          |
+| `focusAnimationDuration`   | Duration        | override the widget's global focus animation duration                                            |
+| `unFocusAnimationDuration` | Duration        | override the widget's global unfocus animation duration                                          |
+| `pulseVariation`           | Tween           | override interval pulse animation                                                                |
 
 ### Creating contents (ContentTarget)
 
@@ -80,17 +81,17 @@ ContentTarget is the class responsible for determining what should be displayed 
 
 Attributes:
 
-| Attribute | Type | Description |
-| --- | --- | --- |
-| `align` | AlignContent | With this attribute you determine in which region to display the content in relation to the focused widget (top,bottom,left,right) |
-| `padding` | EdgeInsets | Padding of the content |
-| `child` | Widget | Content you want to be displayed |
-| `builder` | Widget | Content you want to be displayed |
-| `customPosition` | CustomTargetContentPosition | Add custom position when `align` is AlignContent.custom |
+| Attribute        | Type                        | Description                                                                                                                        |
+| ---------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `align`          | AlignContent                | With this attribute you determine in which region to display the content in relation to the focused widget (top,bottom,left,right) |
+| `padding`        | EdgeInsets                  | Padding of the content                                                                                                             |
+| `child`          | Widget                      | Content you want to be displayed                                                                                                   |
+| `builder`        | Widget                      | Content you want to be displayed                                                                                                   |
+| `customPosition` | CustomTargetContentPosition | Add custom position when `align` is AlignContent.custom                                                                            |
 
 ### Example Complete
 
-``` dart
+```dart
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../../tutorial_coach_mark.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class CustomTargetContentPosition {
   CustomTargetContentPosition({
@@ -11,7 +10,10 @@ class CustomTargetContentPosition {
     this.bottom,
   });
 
-  final double? top, left, right, bottom;
+  final double? top;
+  final double? left;
+  final double? right;
+  final double? bottom;
 
   @override
   String toString() {
@@ -29,11 +31,14 @@ typedef TargetContentBuilder = Widget Function(
 class TargetContent {
   TargetContent({
     this.align = ContentAlign.bottom,
-    this.padding = const EdgeInsets.all(20.0),
+    this.padding = const EdgeInsets.all(20),
     this.child,
     this.customPosition,
     this.builder,
-  }) : assert(!(align == ContentAlign.custom && customPosition == null));
+  }) : assert(
+          !(align == ContentAlign.custom && customPosition == null),
+          'align bad',
+        );
 
   final ContentAlign align;
   final EdgeInsets padding;
