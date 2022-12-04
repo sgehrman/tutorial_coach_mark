@@ -212,6 +212,7 @@ class AnimatedStaticFocusLightState extends AnimatedFocusLightState {
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   borderRadius: _betBorderRadiusTarget(),
                   onTapDown: (details) {
                     _tapHandlerForPosition(details);
@@ -379,6 +380,7 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       borderRadius: _betBorderRadiusTarget(),
                       onTap: _targetFocus.enableTargetTab
                           ? () => _tapHandler(targetTap: true)
