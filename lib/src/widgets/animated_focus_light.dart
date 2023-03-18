@@ -23,7 +23,6 @@ class AnimatedFocusLight extends StatefulWidget {
   final Duration? unFocusAnimationDuration;
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
-  final bool pulseEnable;
 
   const AnimatedFocusLight({
     required this.targets,
@@ -40,7 +39,6 @@ class AnimatedFocusLight extends StatefulWidget {
     this.unFocusAnimationDuration,
     this.pulseAnimationDuration,
     this.pulseVariation,
-    this.pulseEnable = true,
     Key? key,
   })  : assert(targets.length > 0, 'no targets'),
         super(key: key);

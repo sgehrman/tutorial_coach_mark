@@ -8,39 +8,43 @@ TargetPosition? getTargetCurrent(TargetFocus target) {
   if (target.keyTarget != null) {
     final key = target.keyTarget!;
 
-    try {
-      Offset offset = Offset.zero;
-      Size size = Size.zero;
+    if (key.currentContext != null) {
+      try {
+        Offset offset = Offset.zero;
+        Size size = Size.zero;
 
-      final RenderBox? renderBoxRed =
-          key.currentContext!.findRenderObject() as RenderBox?;
+        final RenderBox? renderBoxRed =
+            key.currentContext!.findRenderObject() as RenderBox?;
 
-      if (renderBoxRed != null) {
-        size = renderBoxRed.size;
+        if (renderBoxRed != null) {
+          size = renderBoxRed.size;
 
-        final state =
-            key.currentContext!.findAncestorStateOfType<NavigatorState>();
-        if (state != null) {
-          offset = renderBoxRed.localToGlobal(
-            Offset.zero,
-            ancestor: state.context.findRenderObject(),
-          );
-        } else {
-          offset = renderBoxRed.localToGlobal(Offset.zero);
+          final state =
+              key.currentContext!.findAncestorStateOfType<NavigatorState>();
+          if (state != null) {
+            offset = renderBoxRed.localToGlobal(
+              Offset.zero,
+              ancestor: state.context.findRenderObject(),
+            );
+          } else {
+            offset = renderBoxRed.localToGlobal(Offset.zero);
+          }
         }
+
+        return TargetPosition(size, offset);
+      } catch (e) {
+        print(
+          'TutorialCoachMark (ERROR): It was not possible to obtain target position. $e',
+        );
+
+        return null;
       }
-
-      return TargetPosition(size, offset);
-    } catch (e) {
-      print(
-        'TutorialCoachMark (ERROR): It was not possible to obtain target position. $e',
-      );
-
-      return null;
     }
   } else {
     return target.targetPosition;
   }
+
+  return null;
 }
 
 abstract class TutorialCoachMarkController {

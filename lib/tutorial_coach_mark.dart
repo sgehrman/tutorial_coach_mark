@@ -30,7 +30,6 @@ class TutorialCoachMark {
   final Duration focusAnimationDuration;
   final Duration unFocusAnimationDuration;
   final Duration pulseAnimationDuration;
-  final bool pulseEnable;
   final Widget? skipWidget;
 
   OverlayEntry? _overlayEntry;
@@ -52,7 +51,6 @@ class TutorialCoachMark {
     this.focusAnimationDuration = const Duration(milliseconds: 600),
     this.unFocusAnimationDuration = const Duration(milliseconds: 600),
     this.pulseAnimationDuration = const Duration(milliseconds: 500),
-    this.pulseEnable = true,
     this.skipWidget,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1, 'shadow bad');
 
@@ -77,7 +75,6 @@ class TutorialCoachMark {
           focusAnimationDuration: focusAnimationDuration,
           unFocusAnimationDuration: unFocusAnimationDuration,
           pulseAnimationDuration: pulseAnimationDuration,
-          pulseEnable: pulseEnable,
           finish: finish,
         );
       },
