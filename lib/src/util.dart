@@ -33,7 +33,7 @@ TargetPosition? getTargetCurrent(TargetFocus target) {
       return TargetPosition(size, offset);
     } catch (e) {
       print(
-        'TutorialCoachMark (ERROR): It was not possible to obtain target position.',
+        'TutorialCoachMark (ERROR): It was not possible to obtain target position. $e',
       );
 
       return null;
