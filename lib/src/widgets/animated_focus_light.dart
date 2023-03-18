@@ -8,7 +8,7 @@ import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 
 class AnimatedFocusLight extends StatefulWidget {
-  final List<TargetFocus> targets;
+  final TargetManager targetManager;
   final Function(TargetFocus)? focus;
   final FutureOr<void> Function(TargetFocus)? clickTarget;
   final FutureOr<void> Function(TargetFocus, TapDownDetails)?
@@ -25,7 +25,7 @@ class AnimatedFocusLight extends StatefulWidget {
   final Tween<double>? pulseVariation;
 
   const AnimatedFocusLight({
-    required this.targets,
+    required this.targetManager,
     this.focus,
     this.finish,
     this.removeFocus,
@@ -39,9 +39,8 @@ class AnimatedFocusLight extends StatefulWidget {
     this.unFocusAnimationDuration,
     this.pulseAnimationDuration,
     this.pulseVariation,
-    Key? key,
-  })  : assert(targets.length > 0, 'no targets'),
-        super(key: key);
+    super.key,
+  });
 
   @override
   State<AnimatedFocusLight> createState() => _AnimatedPulseFocusLightState();
@@ -59,14 +58,13 @@ abstract class AnimatedFocusLightState extends State<AnimatedFocusLight>
   TargetPosition? _targetPosition;
 
   double _sizeCircle = 100;
-  int _currentFocus = 0;
   double _progressAnimated = 0;
   bool _goNext = true;
 
   @override
   void initState() {
     super.initState();
-    _targetFocus = widget.targets[_currentFocus];
+    _targetFocus = widget.targetManager.currentFocus();
     _controller = AnimationController(
       vsync: this,
       duration: _targetFocus.focusAnimationDuration ??
@@ -112,28 +110,27 @@ abstract class AnimatedFocusLightState extends State<AnimatedFocusLight>
   void _runFocus();
 
   void _nextFocus() {
-    if (_currentFocus >= widget.targets.length - 1) {
+    if (!widget.targetManager.next()) {
       _finish();
 
       return;
     }
-    _currentFocus++;
 
     _runFocus();
   }
 
   void _previousFocus() {
-    if (_currentFocus <= 0) {
+    if (!widget.targetManager.prev()) {
       _finish();
 
       return;
     }
-    _currentFocus--;
+
     _runFocus();
   }
 
   void _finish() {
-    safeSetState(() => _currentFocus = 0);
+    // safeSetState(() => _currentFocus = 0);
     widget.finish!();
   }
 
@@ -284,11 +281,7 @@ class _AnimatedPulseFocusLightState extends AnimatedFocusLightState {
 
   @override
   void _runFocus() {
-    if (_currentFocus < 0) {
-      return;
-    }
-
-    _targetFocus = widget.targets[_currentFocus];
+    _targetFocus = widget.targetManager.currentFocus();
 
     _controller.duration = _targetFocus.focusAnimationDuration ??
         widget.focusAnimationDuration ??
@@ -300,7 +293,7 @@ class _AnimatedPulseFocusLightState extends AnimatedFocusLightState {
           defaultPulseVariation,
     );
 
-    final targetPosition = getTargetCurrent(_targetFocus);
+    final targetPosition = TargetManager.getTargetPosition(_targetFocus);
 
     if (targetPosition == null) {
       _finish();

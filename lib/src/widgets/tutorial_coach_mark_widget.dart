@@ -26,9 +26,8 @@ class TutorialCoachMarkWidget extends StatefulWidget {
     this.pulseAnimationDuration,
     this.pulseVariation,
     this.skipWidget,
-    Key? key,
-  })  : assert(targets.length > 0, 'no targets'),
-        super(key: key);
+    super.key,
+  });
 
   final List<TargetFocus> targets;
   final FutureOr<void> Function(TargetFocus)? clickTarget;
@@ -59,6 +58,14 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
   final GlobalKey<AnimatedFocusLightState> _focusLightKey = GlobalKey();
   bool showContent = false;
   TargetFocus? currentTarget;
+  late TargetManager _targetManager;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _targetManager = TargetManager(widget.targets);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +75,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
         children: <Widget>[
           AnimatedFocusLight(
             key: _focusLightKey,
-            targets: widget.targets,
+            targetManager: _targetManager,
             finish: widget.finish,
             paddingFocus: widget.paddingFocus,
             colorShadow: widget.colorShadow,
@@ -117,7 +124,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
 
     List<Widget> children = <Widget>[];
 
-    final target = getTargetCurrent(currentTarget!);
+    final target = TargetManager.getTargetPosition(currentTarget!);
     if (target == null) {
       return const SizedBox.shrink();
     }
